@@ -1,0 +1,148 @@
+%%%%% Notation provided in the imperial College Template %%%%%
+
+% quick way of adding a figure
+\newcommand{\fig}[3]{
+ \begin{center}
+ \scalebox{#3}{\includegraphics[#2]{#1}}
+ \end{center}
+}
+
+\newcommand{\figcap}[4]{
+ \begin{figure}[ht]
+        \centering
+        \scalebox{#4}{\includegraphics[#2]{#1}}
+        \caption{#3}
+    \end{figure}
+}
+
+%\newcommand*{\point}[1]{\vec{\mkern0mu#1}}
+\newcommand{\ci}[0]{\perp\!\!\!\!\!\perp} % conditional independence
+\newcommand{\point}[1]{{#1}} % points 
+\renewcommand{\vec}[1]{{\boldsymbol{{#1}}}} % vector
+\newcommand{\mat}[1]{{\boldsymbol{{#1}}}} % matrix
+\newcommand{\R}[0]{\mathds{R}} % real numbers
+\newcommand{\Z}[0]{\mathds{Z}} % integers
+\newcommand{\N}[0]{\mathds{N}} % natural numbers
+\newcommand{\nat}[0]{\mathds{N}} % natural numbers
+\newcommand{\Q}[0]{\mathds{Q}} % rational numbers
+\ifxetex
+\newcommand{\C}[0]{\mathds{C}} % complex numbers
+\else
+\newcommand{\C}[0]{\mathds{C}} % complex numbers
+\fi
+\newcommand{\tr}[0]{\text{tr}} % trace
+\renewcommand{\d}[0]{\mathrm{d}} % total derivative
+\newcommand{\inv}{^{-1}} % inverse
+\newcommand{\id}{\mathrm{id}} % identity mapping
+\renewcommand{\dim}{\mathrm{dim}} % dimension
+\newcommand{\rank}[0]{\mathrm{rk}} % rank
+\newcommand{\determ}[1]{\mathrm{det}(#1)} % determinant
+\newcommand{\scp}[2]{\langle #1 , #2 \rangle}
+\newcommand{\kernel}[0]{\mathrm{ker}} % kernel/nullspace
+\newcommand{\img}[0]{\mathrm{Im}} % image
+\newcommand{\idx}[1]{{(#1)}}
+\DeclareMathOperator*{\diag}{diag}
+\newcommand{\E}{\mathds{E}} % expectation
+\newcommand{\var}{\mathds{V}} % variance
+\newcommand{\gauss}[2]{\mathcal{N}\big(#1,\,#2\big)} % gaussian distribution N(.,.)
+\newcommand{\gaussx}[3]{\mathcal{N}\big(#1\,|\,#2,\,#3\big)} % gaussian distribution N(.|.,.)
+\newcommand{\gaussBig}[2]{\mathcal{N}\left(#1,\,#2\right)} % see above, but with brackets that adjust to the height of the arguments
+\newcommand{\gaussxBig}[3]{\mathcal{N}\left(#1\,|\,#2,\,#3\right)} % see above, but with brackets that adjust to the height of the arguments
+\DeclareMathOperator{\cov}{Cov} % covariance (matrix) 
+\ifxetex
+\renewcommand{\T}[0]{^\top} % transpose
+\else
+\newcommand{\T}[0]{^\top}
+\fi
+% matrix determinant
+\newcommand{\matdet}[1]{
+\left|
+\begin{matrix}
+#1
+\end{matrix}
+\right|
+}
+
+
+%%% various color definitions
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\newcommand{\blue}[1]{{\color{blue}#1}}
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\green}[1]{{\color{darkgreen}#1}}
+\newcommand{\orange}[1]{{\color{orange}#1}}
+\newcommand{\magenta}[1]{{\color{magenta}#1}}
+\newcommand{\cyan}[1]{{\color{cyan}#1}}
+
+
+% redefine emph
+\renewcommand{\emph}[1]{\blue{\bf{#1}}}
+
+% place a colored box around a character
+\gdef\colchar#1#2{%
+  \tikz[baseline]{%
+  \node[anchor=base,inner sep=2pt,outer sep=0pt,fill = #2!20] {#1};
+    }%
+}%
+
+
+%%%%% Adition by Froux %%%%%
+
+
+\newcommand{\abs}[1]{\mid#1\mid} % Valeur Absolue
+\newcommand{\norm}[1]{ \mid \mid #1\mid \mid } %Norme d'un vecteur
+
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{C} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=python, % Use python in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Per function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\script}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.c}
+\end{itemize}
+}
+
+
+%% This insert part of a PDF -> This is an exemple for a 2 slides per page pdf.
+\newcommand{\slide}[1]{
+\begin{center}
+
+\ifodd#1
+\includegraphics[page= \numexpr (#1/2), clip, scale=0.7, viewport=110 460 500 780]{Cours1}
+\else
+\includegraphics[page=\numexpr (#1/2), clip, scale=0.7, viewport=110 100 500 380]{Cours1}
+\fi
+\end{center}
+}
